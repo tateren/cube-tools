@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Validator::extend('algorithm', function ($attribute, $value) {
+            $rotation = "([ULFRBD]w?|[MESxyz])[2']?";
+            return preg_match("/^$rotation( $rotation)*$/u", $value);
+        }, 'The :attribute format is invalid');
     }
 }

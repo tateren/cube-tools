@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommutatorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    // return view('index');
+    return redirect(route('commutator'));
+})->name('index');
+
+Route::get('/commutator', CommutatorController::class)->name('commutator');
