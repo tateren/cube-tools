@@ -27,5 +27,9 @@ class AppServiceProvider extends ServiceProvider
             $rotation = "([ULFRBD]w?|[MESxyz])[2']?";
             return preg_match("/^$rotation( $rotation)*$/u", $value);
         }, 'The :attribute format is invalid');
+
+        if (\App::environment(['production'])) {
+            \URL::forceScheme('https');
+        }
     }
 }
